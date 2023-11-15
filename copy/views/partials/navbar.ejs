@@ -1,0 +1,214 @@
+<style>
+      /* ritik_css */
+
+        #search-div {
+        height: 100%;
+        width: 35%;
+        background-color: rgb(224, 224, 224);
+        background-color: #fff;
+        position: absolute;
+        left: -42%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        z-index: 9;
+        top: 0;
+        transition: 0.6s;
+        }
+
+        #frm {
+        padding: 4vw 5vw;
+        border-bottom: 0.6px solid #6d6b6b56;
+        /* display:initial; */
+        }
+        #frm form{
+        display: initial;
+        }
+
+        #frm h1 {
+        margin-bottom: 20px;
+        font-size: 20px;
+        }
+        #frm form input {
+        border: 0.6px solid #dadada;
+        outline: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        width: 269px;
+        font-size: 16px;
+        display:initial;
+        }
+
+        .user {
+        display: flex !important;
+        display: inline-block;
+        flex-direction: row;
+        gap: 6px;
+        align-items: center !important;
+        }
+        .searchResult .user{
+        display: flex !important;
+        }
+        .searchResult a{
+        display: flex;
+        }
+        .user img {
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+        }
+        #searchResult {
+        padding: 2vw 5vw;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-height: 72.5%;
+        overflow: auto;
+        }
+        #searchResult a {
+        color: #000;
+        text-decoration: none;
+        }
+
+        /* ritik_css */
+</style>
+
+<div id="search-div">
+    <div id="frm">
+      <h1>Search</h1>
+      <form id="searchform" method="post">
+        <input id="search" type="text" size="30" placeholder="Search" />
+      </form>
+    </div>
+
+    <div id="searchResult"></div>
+  </div>
+
+<div class="nav" data-scroll data-scroll-sticky data-scroll-target="#main">
+    <h1 style="font-family:voyage; font-weight:900; margin-left: 16px; font-size: 2vw;">My Instagram</h1>
+    <div class="rows">
+        <a href="/home">
+            <div class="r1">
+                <i class="ri-home-4-line"></i>
+                home
+            </div>
+        </a>
+        <a id="search_user" href="#">
+            <div class="r1">
+                <i class="ri-search-line"></i>
+                search
+            </div>
+        </a>
+        <a href="/reels">
+            <div class="r1">
+                <svg aria-label="Reels" class="_ab6-" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="24" role="img"
+                    viewBox="0 0 24 24" width="24">
+                    <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="2.049"
+                        x2="21.95" y1="7.002" y2="7.002"></line>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" x1="13.504" x2="16.362" y1="2.001" y2="7.002"></line>
+                    <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" x1="7.207" x2="10.002" y1="2.11" y2="7.002"></line>
+                    <path
+                        d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z"
+                        fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2"></path>
+                    <path
+                        d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z"
+                        fill-rule="evenodd"></path>
+                </svg>
+                reels
+            </div>
+        </a>
+        <a href="/chat">
+            <div class="r1">
+                <i class="ri-messenger-line"></i>
+                chats
+            </div>
+        </a>
+        <a href="#">
+            <div id="str" class="r1">
+                <i class="ri-add-box-line"></i>
+                Upload story
+            </div>
+        </a>
+        <a href="#">
+            <div id="createbutton" class="r1">
+                <i class="ri-add-box-line"></i>
+                Create Post
+            </div>
+        </a>
+        <a href="/profile">
+            <div class="r1">
+                <div class="circle">
+                    <img src="/getFile/<%= user.userProfileimg %> %>" alt="">
+                </div>
+                profile
+            </div>
+        </a>
+    </div>
+    <a href="/logout">
+        <div class="menu">
+            <i class="ri-user-fill"></i>
+            logout
+        </div>
+    </a>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    // ritik_js
+
+    var count = 0;
+    document
+      .querySelector("#search_user")
+      .addEventListener("click", function () {
+        if (count == 0) {
+          document.querySelector("#search-div").style.left = "15%";
+          count = 1;
+        } else {
+          document.querySelector("#search-div").style.left = "-42%";
+          count = 0;
+        }
+      });
+
+    $("#searchform").submit(function (event) {
+      event.preventDefault();
+      var search = $("#search").val();
+
+      $.ajax({
+        url: "/searchUser",
+        type: "POST",
+        data: {
+          search: search,
+        },
+        success: function (response) {
+          if (response.success) {
+            $("#searchResult").html("");
+            $("#search").val("");
+            let user = response.data;
+            user.forEach(function (user) {
+              console.log(user.username);
+
+              var a = document.createElement("a");
+              a.href = `user/${user.name}`;
+              var div = document.createElement("div");
+              div.classList.add("user");
+              var Img = document.createElement("img");
+              Img.src = `/getFile/${user.userProfileimg}`;
+              var h4 = document.createElement("h4");
+              h4.textContent = user.username;
+              div.appendChild(Img);
+              div.appendChild(h4);
+              a.appendChild(div);
+              $("#searchResult").append(a);
+            });
+          }else{
+              console.log("heyyyyy");
+          }
+        },
+      });
+    });
+
+    // ritik_js
+</script>

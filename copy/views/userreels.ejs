@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+    <form id="postform" action="/uploadpost" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+            <input id="post" name="posts" class="form-control" type="file" id="formFileMultiple" multiple>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit">
+    </form>
+
+    <form id="profileform" action="/userprofileimg" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+            <input id="file" name="filenames" class="form-control" type="file" id="formFileMultiple" multiple>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit">
+    </form>
+    <div class="primg_card">
+        <div class="head">
+            <div class="photo">
+                <img src="getFile/<%= user.userProfileimg %>" alt="#">
+            </div>
+            <h6>Synced profile photo</h6>
+            <small>Instagram</small>
+        </div>
+        <div class="prows">
+            <div id="upr" class="prow">
+                <h6 id="up">Upload Photo</h6>
+            </div>
+            <div id="rcp" class="prow">
+                <h6>Remove Current Photo</h6>
+            </div>
+            <div class="prow">
+                <h6 id="cnl">Cancel</h6>
+            </div>
+        </div>
+    </div>
+    <div class="createpost">
+        <i id="close" class="ri-close-line"></i>
+        <div class="contant">
+            <div class="top">
+                Create new post
+            </div>
+            <div class="bottom">
+                <div class="pandr">
+                    <svg aria-label="Icon to represent media such as images or videos" class="x1lliihq x1n2onr6"
+                        color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="77" role="img" viewBox="0 0 97.6 77.3"
+                        width="96">
+                        <title>Icon to represent media such as images or videos</title>
+                        <path
+                            d="M16.3 24h.3c2.8-.2 4.9-2.6 4.8-5.4-.2-2.8-2.6-4.9-5.4-4.8s-4.9 2.6-4.8 5.4c.1 2.7 2.4 4.8 5.1 4.8zm-2.4-7.2c.5-.6 1.3-1 2.1-1h.2c1.7 0 3.1 1.4 3.1 3.1 0 1.7-1.4 3.1-3.1 3.1-1.7 0-3.1-1.4-3.1-3.1 0-.8.3-1.5.8-2.1z"
+                            fill="currentColor"></path>
+                        <path
+                            d="M84.7 18.4 58 16.9l-.2-3c-.3-5.7-5.2-10.1-11-9.8L12.9 6c-5.7.3-10.1 5.3-9.8 11L5 51v.8c.7 5.2 5.1 9.1 10.3 9.1h.6l21.7-1.2v.6c-.3 5.7 4 10.7 9.8 11l34 2h.6c5.5 0 10.1-4.3 10.4-9.8l2-34c.4-5.8-4-10.7-9.7-11.1zM7.2 10.8C8.7 9.1 10.8 8.1 13 8l34-1.9c4.6-.3 8.6 3.3 8.9 7.9l.2 2.8-5.3-.3c-5.7-.3-10.7 4-11 9.8l-.6 9.5-9.5 10.7c-.2.3-.6.4-1 .5-.4 0-.7-.1-1-.4l-7.8-7c-1.4-1.3-3.5-1.1-4.8.3L7 49 5.2 17c-.2-2.3.6-4.5 2-6.2zm8.7 48c-4.3.2-8.1-2.8-8.8-7.1l9.4-10.5c.2-.3.6-.4 1-.5.4 0 .7.1 1 .4l7.8 7c.7.6 1.6.9 2.5.9.9 0 1.7-.5 2.3-1.1l7.8-8.8-1.1 18.6-21.9 1.1zm76.5-29.5-2 34c-.3 4.6-4.3 8.2-8.9 7.9l-34-2c-4.6-.3-8.2-4.3-7.9-8.9l2-34c.3-4.4 3.9-7.9 8.4-7.9h.5l34 2c4.7.3 8.2 4.3 7.9 8.9z"
+                            fill="currentColor"></path>
+                        <path
+                            d="M78.2 41.6 61.3 30.5c-2.1-1.4-4.9-.8-6.2 1.3-.4.7-.7 1.4-.7 2.2l-1.2 20.1c-.1 2.5 1.7 4.6 4.2 4.8h.3c.7 0 1.4-.2 2-.5l18-9c2.2-1.1 3.1-3.8 2-6-.4-.7-.9-1.3-1.5-1.8zm-1.4 6-18 9c-.4.2-.8.3-1.3.3-.4 0-.9-.2-1.2-.4-.7-.5-1.2-1.3-1.1-2.2l1.2-20.1c.1-.9.6-1.7 1.4-2.1.8-.4 1.7-.3 2.5.1L77 43.3c1.2.8 1.5 2.3.7 3.4-.2.4-.5.7-.9.9z"
+                            fill="currentColor"></path>
+                    </svg>
+                    <h3>Drag photos and videos here</h3>
+                    <button id="sfc" type="submit">Select from computer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="contain">
+            <% include ./partials/navbar.ejs %>
+                <div id="right">
+                    <div class="profile">
+                        <div class="me">
+                            <div class="me_user">
+                                <div class="img">
+                                    <div class="picture">
+                                        <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#"><img
+                                                src="getFile/<%= user.userProfileimg %>" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="about">
+                                    <div class="user">
+                                        <h5>
+                                            <%= user.username %>
+                                        </h5>
+                                        <a href="/edit"><button type="button">Edit Profile</button></a>
+                                        <a href="#">
+                                            <svg aria-label="Options" class="x1lliihq x1n2onr6" color="rgb(0, 0, 0)"
+                                                fill="rgb(0, 0, 0)" height="24" role="img" viewBox="0 0 24 24"
+                                                width="24">
+                                                <title>Options</title>
+                                                <circle cx="12" cy="12" fill="none" r="8.635" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                </circle>
+                                                <path
+                                                    d="M14.232 3.656a1.269 1.269 0 0 1-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 0 1-.796.66m-.001 16.688a1.269 1.269 0 0 1 .796.66l.505.996h1.862l.505-.996a1.269 1.269 0 0 1 .796-.66M3.656 9.768a1.269 1.269 0 0 1-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 0 1 .66.796m16.688-.001a1.269 1.269 0 0 1 .66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 0 1-.66-.796M7.678 4.522a1.269 1.269 0 0 1-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 0 1-.096 1.03m11.8 11.799a1.269 1.269 0 0 1 1.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 0 1 .096-1.03m-14.956.001a1.269 1.269 0 0 1 .096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 0 1 1.03.096m11.799-11.8a1.269 1.269 0 0 1-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 0 1-1.03-.096"
+                                                    fill="none" stroke="currentColor" stroke-linejoin="round"
+                                                    stroke-width="2">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="posts">
+                                        <h6>
+                                            <%= user.posts.length %> Posts
+                                        </h6>
+                                        <a href="#">
+                                            <h6 id="followers">
+                                                <%= user.followers.length %> followers
+                                            </h6>
+                                        </a>
+                                        <a href="#">
+                                            <h6 id="following">
+                                                <%= user.following.length %> following
+                                            </h6>
+                                        </a>
+                                    </div>
+                                    <h6>
+                                        <%= user.name %>
+                                    </h6>
+                                    <p>
+                                        <%= user.dis %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="highlits">
+                                <div class="highlit">
+                                    <div class="circle_container">
+                                        <div class="highlit_circle">
+                                            <div class="highlit_circle1">
+                                                <i class="ri-add-line"></i>
+                                            </div>
+                                        </div>
+                                        <h6>New</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feeds">
+                        <div class="header">
+                            <div class="feed_nav">
+                                <div class="divs">
+                                    <a href="/profile">
+                                        <div class="div">
+                                            <i class="ri-grid-line"></i>
+                                            <h6>posts</h6>
+                                        </div>
+                                    </a>
+                                    <div id="reels" class="div">
+                                        <div class="x9f619 xxk0z11 xvy4d1p x11xpdln xii2z7h x19c4wfv"><svg
+                                                aria-label="Reels" class="_ab6-" color="rgb(0, 0, 0)"
+                                                fill="rgb(0, 0, 0)" height="24" role="img" viewBox="0 0 24 24"
+                                                width="24">
+                                                <line fill="none" stroke="currentColor" stroke-linejoin="round"
+                                                    stroke-width="2" x1="2.049" x2="21.95" y1="7.002" y2="7.002"></line>
+                                                <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" x1="13.504" x2="16.362"
+                                                    y1="2.001" y2="7.002"></line>
+                                                <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" x1="7.207" x2="10.002"
+                                                    y1="2.11" y2="7.002"></line>
+                                                <path
+                                                    d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z"
+                                                    fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"></path>
+                                                <path
+                                                    d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z"
+                                                    fill-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <h6>Reels</h6>
+                                    </div>
+                                    <a href="/saved">
+                                        <div class="div">
+                                            <h6>saved</h6>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feed">
+                            <div class="post">
+                                <% if(user.reels.length===0){ %>
+                                    <div class="noposts">
+                                        <div class="cmra">
+                                            <i class="ri-camera-line"></i>
+                                        </div>
+                                        <h1>No Posts Yet</h1>
+                                    </div>
+                                    <% }else{ %>
+                                        <% user.reels.forEach(function(elemFor){ %>
+                                            <a href="/img/<%= elemFor._id %>">
+                                                <div class="f1">
+                                                    <div class="f1overlay">
+                                                        <div class="icons">
+                                                            <div id="likes" class="icon">
+                                                                <i class="ri-heart-fill"></i>
+                                                                <h6>
+                                                                    <%= elemFor.likes.length %>
+                                                                </h6>
+                                                            </div>
+                                                            <div id="comments" class="icon">
+                                                                <i class="ri-chat-1-fill"></i>
+                                                                <h6>
+                                                                    <%= elemFor.comment.length %>
+                                                                </h6>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <video id="playvideo" src="/getpost/<%= elemFor.post %>"
+                                                        muted></video>
+                                                    <i id="play" class="ri-play-fill"></i>
+                                                </div>
+                                            </a>
+
+                                         <% }) %>
+                                     <% } %>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="javascripts/script.js"></script>
+    <script>
+        var flag = 0;
+        document.querySelector(".picture")
+            .addEventListener("click", function () {
+                if (flag === 0) {
+                    document.querySelector(".primg_card").style.display = "initial";
+                    flag = 1;
+                }
+                else {
+                    document.querySelector(".primg_card").style.display = "none";
+                    flag = 0;
+                }
+            })
+
+        document.querySelector("#createbutton")
+            .addEventListener("click", function () {
+                if (flag === 0) {
+                    document.querySelector(".createpost").style.display = "flex";
+                    flag = 1;
+                }
+                else {
+                    document.querySelector(".createpost").style.display = "none";
+                    flag = 0;
+                }
+            })
+
+        document.querySelector("#cnl")
+            .addEventListener("click", function () {
+                document.querySelector(".primg_card").style.display = "none";
+            })
+
+        document.querySelector("#close")
+            .addEventListener("click", function () {
+                document.querySelector(".createpost").style.display = "none";
+            })
+
+        document.querySelector("#upr")
+            .addEventListener("click", function () {
+                document.querySelector("#file").click();
+
+            })
+        document.querySelector("#file").addEventListener("change", function () {
+            document.querySelector("#profileform").submit();
+        })
+
+        document.querySelector("#sfc")
+            .addEventListener("click", function () {
+                document.querySelector("#post").click();
+
+            })
+        document.querySelector("#post").addEventListener("change", function () {
+            document.querySelector("#postform").submit();
+        })
+
+
+        var video = document.querySelectorAll("#playvideo")
+        video.forEach(function (elemFor) {
+            elemFor.addEventListener("mouseenter", function () {
+                elemFor.play()
+            })
+        })
+
+        var video = document.querySelectorAll("#playvideo")
+        video.forEach(function (elemFor) {
+            elemFor.addEventListener("mouseleave", function () {
+                elemFor.pause()
+            })
+        })
+
+    </script>
+</body>
+
+</html>

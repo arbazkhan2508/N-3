@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link href="/stylesheets/img.css" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/img.css">
+
+</head>
+
+<style>
+  .likes_card {
+    position: fixed;
+    top: 0;
+    width: 70%;
+    height: 100%;
+    z-index: 9999999999999;
+    display: flex;
+    /* align-items: center;
+      justify-content: center; */
+    background-color: #ffffff3a;
+    background-color: transparent;
+    margin-left: 15vw;
+    /* display: none; */
+    pointer-events: none;
+  }
+
+  #likes_container {
+    width: 25vw;
+    height: 50vh;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #333;
+    z-index: 999999;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .likes_user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1vw;
+    padding-top: 10px;
+  }
+
+  .likes_user h6 {
+    font-size: 15px;
+    margin-top: 5px;
+  }
+
+  .likes_nav {
+    width: 100%;
+    height: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+    border-bottom: 1px solid #333;
+  }
+
+  .likes_det {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .likes_det .likes_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rebeccapurple;
+    overflow: hidden;
+  }
+
+  .likes_det .likes_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .likes_button {
+    background-color: #dadada;
+    width: fit-content;
+    padding: 1px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+
+  }
+
+  .likes_card span {
+    font-size: 10px !important;
+    color: #0094f7;
+
+  }
+
+  .head_container {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+  }
+
+  .head_container h6 {
+    font-size: 20px;
+  }
+
+  #likes_close {
+    font-size: 22px;
+    color: #000;
+  }
+
+  #follow {
+    padding: 5px 10px !important;
+  }
+
+  #delete_comment {
+    /* opacity: 0; */
+    font-size: 16px;
+    margin-left: 5px;
+  }
+
+  .comment_card:hover #delete_comment {
+    opacity: 1;
+  }
+</style>
+
+<body>
+  <div id="main">
+    <h6 id="url"><%= url %></h6>
+    <% include ./partials/navbar.ejs %>
+
+      <div class="createpost">
+        <a href="/user/<%= url %>"><i id="close" class="ri-close-line"></i></a>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="contant">
+                <div class="container">
+                  <div class="left">
+                    <% if(postone.ext==="mp4" || postone.ext==="mkv" ){ %>
+                      <i id="pauseVideo" class="ri-play-fill"></i>
+                      <video id="leftVideo" autoplay muted loop src="/getpost/<%= postone.post %>"></video>
+                      <div id="reelbutton" class="x9f619 xxk0z11 xvy4d1p x11xpdln xii2z7h x19c4wfv"><svg
+                          aria-label="Reels" class="_ab6-" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="24"
+                          role="img" viewBox="0 0 24 24" width="24">
+                          <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                            x1="2.049" x2="21.95" y1="7.002" y2="7.002"></line>
+                          <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" x1="13.504" x2="16.362" y1="2.001" y2="7.002"></line>
+                          <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" x1="7.207" x2="10.002" y1="2.11" y2="7.002"></line>
+                          <path
+                            d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z"
+                            fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2"></path>
+                          <path
+                            d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z"
+                            fill-rule="evenodd"></path>
+                        </svg>
+                      </div>
+                      <% } else{ %>
+                        <img src="/getpost/<%= postone.post %>" alt="">
+                        <% } %>
+                  </div>
+                  <div class="right">
+                    <div class="topr">
+                      <div class="userr">
+                        <div class="circle">
+                          <img src="/getFile/<%= postone.owner.userProfileimg %> %>" alt="">
+                        </div>
+                        <%= postone.owner.name %>
+                      </div>
+                      <% if(user._id.equals(postone.owner._id)){ %>
+                        <a href="/delete/<%= postone._id %>">
+                          <div style="background-color: red; font-size: 12px; padding: 1px 7px;" id="follow"
+                            class="btnf">
+                            Delete Post
+                          </div>
+                        </a>
+                        <% }else{ %>
+
+                          <% } %>
+
+                    </div>
+                    <div class="comment_area">
+                       <% if(postone.comment.length===0){ %>
+                            <div class="comment_area_empty">
+                              <h1>No comments yet.</h1>
+                              <h6>Start the conversation.</h6>
+                            </div>
+                        <% }else{ %>
+                            <% postone.comment.forEach(function(val){ %>
+                                <div class="comment_card">
+                                  <div class="user_comment">
+                                    <div class="circlem">
+                                      <img src="/getFile/<%= val.owner.userProfileimg %>" alt="">
+                                    </div>
+                                    <h6>
+                                      <%= val.owner.name %>
+                                    </h6>
+                                  </div>
+                                  <div class="comments_div">
+                                    <div class="comments">
+                                      <h6>
+                                        <%= val.data %>
+                                      </h6>
+                                      <% if(val.likes.indexOf(user._id)===-1){ %>
+                                        <a href="/likecomment/<%= val._id %>">
+                                          <i class="ri-heart-line"></i>
+                                        </a>
+                                        <% } else{ %>
+                                          <a href="/likecomment/<%= val._id %>">
+                                            <i class="ri-heart-fill"></i>
+                                          </a>
+                                          <% } %>
+                                    </div>
+                                    <div class="react">
+                                      <a id="like_length" href="/likedcomment/<%= val._id %>">
+                                        <h6>
+                                          <%= val.likes.length %> likes
+                                        </h6>
+                                      </a>
+                                      <% if(user._id.equals(val.owner._id) || user._id.equals(postone.owner._id)){ %>
+                                        <a href="/deletecomment/<%= val._id %>"><i id="delete_comment"
+                                            class="ri-delete-bin-4-line"></i></a>
+                                        <% }else{ %>
+
+                                          <% } %>
+                                    </div>
+                                  </div>
+                                </div>
+                              <% }) %>
+                        <% } %>
+
+
+                    </div>
+                    <div class="bottom">
+                      <div class="icon_ak">
+
+                        <% if(user.Bookmark.indexOf(postone._id)===-1){ %>
+                          <a href="/save/<%= postone._id %>"><i class="ri-bookmark-line"></i></i></a>
+                          <% } else{ %>
+                            <a href="/save/<%= postone._id %>"><i class="ri-bookmark-fill"></i></i></a>
+                            <% } %>
+                              <div class="left_icons">
+                                <% if(user.likes.indexOf(postone._id)===-1){ %>
+                                  <a href="/likepost/<%= postone._id %>"><i class="ri-heart-line"></i></a>
+                                  <% } else{ %>
+                                    <a href="/likepost/<%= postone._id %>"><i class="ri-heart-fill"></i></a>
+                                    <% } %>
+                                      <i class="ri-chat-1-line"></i>
+
+                              </div>
+                      </div>
+                      <h6>
+                        <%= postone.likes.length %>
+                      </h6>
+                      <div class="comment_box">
+                        <form action="/comment/<%= postone._id %>" method="post">
+                          <input name="data" type="text" placeholder="Add a comment ...">
+                          <button id="comment_button" type="submit">Post</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% user.posts.forEach(function(elemFor){ %>
+              <% if(elemFor._id.equals(postone._id)){ %>
+              <% }else{ %>
+                    <div class="swiper-slide">
+                      <div class="contant">
+                        <div class="container">
+                          <div class="left">
+                            <% if(elemFor.ext==="mp4" || elemFor.ext==="mkv" ){ %>
+                              <i id="pauseVideo" class="ri-play-fill"></i>
+                              <video id="leftVideo" autoplay muted loop src="/getpost/<%= elemFor.post %>"></video>
+                              <div id="reelbutton" class="x9f619 xxk0z11 xvy4d1p x11xpdln xii2z7h x19c4wfv"><svg
+                                  aria-label="Reels" class="_ab6-" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="24"
+                                  role="img" viewBox="0 0 24 24" width="24">
+                                  <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                    x1="2.049" x2="21.95" y1="7.002" y2="7.002"></line>
+                                  <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" x1="13.504" x2="16.362" y1="2.001" y2="7.002"></line>
+                                  <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" x1="7.207" x2="10.002" y1="2.11" y2="7.002"></line>
+                                  <path
+                                    d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z"
+                                    fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"></path>
+                                  <path
+                                    d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z"
+                                    fill-rule="evenodd"></path>
+                                </svg>
+                              </div>
+                              <% } else{ %>
+                                <img src="/getpost/<%= elemFor.post %>" alt="">
+                                <% } %>
+                          </div>
+                          <div class="right">
+                            <div class="topr">
+                              <div class="userr">
+                                <div class="circle">
+                                  <img src="/getFile/<%= elemFor.owner.userProfileimg %> %>" alt="">
+                                </div>
+                                <%= elemFor.owner.name %>
+                              </div>
+                              <% if(user._id.equals(elemFor.owner._id)){ %>
+                                <a href="/delete/<%= postone._id %>">
+                                  <div style="background-color: red; font-size: 12px; padding: 1px 7px;" id="follow"
+                                    class="btnf">
+                                    Delete Post
+                                  </div>
+                                </a>
+                                <% }else{ %>
+
+                                  <% } %>
+
+                            </div>
+                            <div class="comment_area">
+                              <% if(elemFor.comment.length===0){ %>
+                                <div class="comment_area_empty">
+                                  <h1>No comments yet.</h1>
+                                  <h6>Start the conversation.</h6>
+                                </div>
+
+                                <% }else{ %>
+                                  <% elemFor.comment.forEach(function(val){ %>
+                                    <div class="comment_card">
+                                      <div class="user_comment">
+                                        <div class="circlem">
+                                          <img src="/getFile/<%= val.owner.userProfileimg %>" alt="">
+                                        </div>
+                                        <h6>
+                                          <%= val.owner.name %>
+                                        </h6>
+                                      </div>
+                                      <div class="comments_div">
+                                        <div class="comments">
+                                          <h6>
+                                            <%= val.data %>
+                                          </h6>
+                                          <% if(val.likes.indexOf(user._id)===-1){ %>
+                                            <a href="/likecomment/<%= val._id %>">
+                                              <i class="ri-heart-line"></i>
+                                            </a>
+                                            <% } else{ %>
+                                              <a href="/likecomment/<%= val._id %>">
+                                                <i class="ri-heart-fill"></i>
+                                              </a>
+                                              <% } %>
+                                        </div>
+                                        <div class="react">
+                                          <a id="like_length" href="/likedcomment/<%= val._id %>">
+                                            <h6>
+                                              <%= val.likes.length %> likes
+                                            </h6>
+                                          </a>
+                                          <% if(user._id.equals(val.owner._id) || user._id.equals(postone.owner._id)){
+                                            %>
+                                            <a href="/deletecomment/<%= val._id %>"><i id="delete_comment"
+                                                class="ri-delete-bin-4-line"></i></a>
+                                            <% }else{ %>
+
+                                              <% } %>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <% }) %>
+                                      <% } %>
+                            </div>
+                            <div class="bottom">
+                              <div class="icon_ak">
+
+                                <% if(user.Bookmark.indexOf(elemFor._id)===-1){ %>
+                                  <a href="/save/<%= elemFor._id %>"><i class="ri-bookmark-line"></i></i></a>
+                                  <% } else{ %>
+                                    <a href="/save/<%= elemFor._id %>"><i class="ri-bookmark-fill"></i></i></a>
+                                    <% } %>
+                                      <div class="left_icons">
+                                        <% if(user.likes.indexOf(elemFor._id)===-1){ %>
+                                          <a href="/likepost/<%= elemFor._id %>"><i class="ri-heart-line"></i></a>
+                                          <% } else{ %>
+                                            <a href="/likepost/<%= elemFor._id %>"><i class="ri-heart-fill"></i></a>
+                                            <% } %>
+                                              <i class="ri-chat-1-line"></i>
+
+                                      </div>
+                              </div>
+                              <h6>
+                                <%= elemFor.likes.length %>
+                              </h6>
+                              <div class="comment_box">
+                                <form action="/comment/<%= elemFor._id %>" method="post">
+                                  <input name="data" type="text" placeholder="Add a comment ...">
+                                  <button id="comment_button" type="submit">Post</button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% } %>
+              <% }) %>
+
+          </div>
+          <div class="swiper-button-next">
+            <i class="ri-arrow-right-s-line"></i>
+          </div>
+          <div class="swiper-button-prev">
+            <i class="ri-arrow-left-s-line"></i>
+          </div>
+        </div>
+
+      </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js"
+    integrity="sha512-NCiXRSV460cHD9ClGDrTbTaw0muWUBf/zB/yLzJavRsPNUl9ODkUVmUHsZtKu17XknhsGlmyVoJxLg/ZQQEeGA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script>
+
+  // swiper
+    var swiper = new Swiper(".mySwiper", {
+    loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  // swiper
+
+    document.querySelectorAll("#like_length")
+      .forEach(function (elm) {
+        elm.addEventListener("click", function () {
+          document.querySelector(".likes_card").style.display = "initial";
+        })
+      })
+
+
+    var flag = 0;
+    var video = document.querySelector("#leftVideo")
+    var button = document.querySelector("#pauseVideo")
+    video.addEventListener("click", function () {
+      if (flag === 0) {
+        video.pause();
+        button.style.opacity = 1;
+        flag = 1;
+      } else {
+        video.play();
+        button.style.opacity = 0;
+        flag = 0;
+      }
+    });
+
+
+
+  </script>
+</body>
+
+</html>

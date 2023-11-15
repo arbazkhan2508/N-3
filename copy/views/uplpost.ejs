@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="/stylesheets/img.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/img.css">
+
+</head>
+
+<style>
+    .likes_card {
+        position: fixed;
+        top: 0;
+        width: 70%;
+        height: 100%;
+        z-index: 9999999999999;
+        display: flex;
+        /* align-items: center;
+      justify-content: center; */
+        background-color: #ffffff3a;
+        background-color: transparent;
+        margin-left: 15vw;
+        /* display: none; */
+        pointer-events: none;
+    }
+
+    #likes_container {
+        width: 25vw;
+        height: 50vh;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 5px #333;
+        z-index: 999999;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .likes_user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1vw;
+        padding-top: 10px;
+    }
+
+    .likes_user h6 {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+
+    .likes_nav {
+        width: 100%;
+        height: 12%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 20px;
+        border-bottom: 1px solid #333;
+    }
+
+    .likes_det {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .likes_det .likes_img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rebeccapurple;
+        overflow: hidden;
+    }
+
+    .likes_det .likes_img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .likes_button {
+        background-color: #dadada;
+        width: fit-content;
+        padding: 1px 10px;
+        border-radius: 7px;
+        font-size: 12px;
+
+    }
+
+    .likes_card span {
+        font-size: 10px !important;
+        color: #0094f7;
+
+    }
+
+    .head_container {
+        display: flex;
+        align-items: center;
+        gap: 100px;
+    }
+
+    .head_container h6 {
+        font-size: 20px;
+    }
+
+    #likes_close {
+        font-size: 22px;
+        color: #000;
+    }
+
+    #follow {
+        padding: 5px 10px !important;
+    }
+
+    #delete_comment {
+        /* opacity: 0; */
+        font-size: 16px;
+        margin-left: 5px;
+    }
+
+    .comment_card:hover #delete_comment {
+        opacity: 1;
+    }
+    .cnp{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #fff;
+        height: 5vh;
+        width: 100%;
+        font-size: 30px;
+        letter-spacing: 1px;
+    }
+    .container{
+        flex-direction: column;
+    }
+    .btm{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 90%;
+
+    }
+    input{
+        background-color: transparent;
+    }
+    form{
+        background-color: transparent;
+    }
+    textarea{
+        background-color: red;
+        resize: none;
+        height:40vh;
+        margin-top: 20px;
+        outline: none;
+    }
+    textarea::placeholder{
+        color: #fff !important;
+    }
+    input::placeholder{
+        color: #fff !important;
+        outline: none;
+    }
+    button{
+        position: absolute;
+        top: 3%;
+        right: 10%;
+        letter-spacing: 1px;
+    }
+</style>
+
+<body>
+    <div id="main">
+        <% include ./partials/navbar.ejs %>
+
+            <div class="createpost">
+                <a href="/home"><i id="close" class="ri-close-line"></i></a>
+                <div class="contant">
+                    <div class="container">\
+                        <div class="cnp">
+                              <h6>Create new post</h6>
+                        </div>
+                        <div class="btm">
+                            <div class="left">
+                                <% if(userPosts.ext==="mp4" || userPosts.ext==="mkv" ){ %>
+                                    <i id="pauseVideo" class="ri-play-fill"></i>
+                                    <video id="leftVideo" autoplay muted loop src="/getpost/<%= userPosts.post %>"></video>
+                                    <div id="reelbutton" class="x9f619 xxk0z11 xvy4d1p x11xpdln xii2z7h x19c4wfv"><svg
+                                            aria-label="Reels" class="_ab6-" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)"
+                                            height="24" role="img" viewBox="0 0 24 24" width="24">
+                                            <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                                x1="2.049" x2="21.95" y1="7.002" y2="7.002"></line>
+                                            <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" x1="13.504" x2="16.362" y1="2.001"
+                                                y2="7.002"></line>
+                                            <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" x1="7.207" x2="10.002" y1="2.11"
+                                                y2="7.002"></line>
+                                            <path
+                                                d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z"
+                                                fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"></path>
+                                            <path
+                                                d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z"
+                                                fill-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <% } else{ %>
+                                        <img src="/getpost/<%= userPosts.post %>" alt="">
+                                        <% } %>
+                            </div>
+                            <div class="right">
+                                <div class="topr">
+                                    <div class="userr">
+                                        <div class="circle">
+                                            <img src="/getFile/<%= user.userProfileimg %> %>" alt="">
+                                        </div>
+                                        <%= user.name %>
+                                    </div>
+                                    
+    
+                                </div>
+                                <form action="/upost" method="post">
+                                   
+                                    <div class="mb-3">
+                                        <textarea  style="background-color:transparent; border: none; color: #fff;" placeholder="Write a caption...." input type="text" name="Caption" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"></textarea>
+                                      </div>
+                                    <div class="mb-3">
+                                      <input style="background-color:transparent; border: none; color: #fff;" type="text" placeholder="Add location"  name="location" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    </div>
+                                    <button style="margin-top: 20px; border: none; background-color: transparent; color: #0094f7;font-size: 20px;" type="submit" class="btn btn-warning mb-3">Share</button>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js"
+        integrity="sha512-NCiXRSV460cHD9ClGDrTbTaw0muWUBf/zB/yLzJavRsPNUl9ODkUVmUHsZtKu17XknhsGlmyVoJxLg/ZQQEeGA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script>
+
+        // swiper
+        var swiper = new Swiper(".mySwiper", {
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+        // swiper
+
+        document.querySelectorAll("#like_length")
+            .forEach(function (elm) {
+                elm.addEventListener("click", function () {
+                    document.querySelector(".likes_card").style.display = "initial";
+                })
+            })
+
+
+        var flag = 0;
+        var video = document.querySelector("#leftVideo")
+        var button = document.querySelector("#pauseVideo")
+        video.addEventListener("click", function () {
+            if (flag === 0) {
+                video.pause();
+                button.style.opacity = 1;
+                flag = 1;
+            } else {
+                video.play();
+                button.style.opacity = 0;
+                flag = 0;
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

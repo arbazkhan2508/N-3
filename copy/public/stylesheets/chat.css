@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+#main{
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+}
+#contant{
+    /* background-color: teal; */
+    width: 85%;
+    height: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+#chat{
+    display: flex;
+    /* background-color: rebeccapurple; */
+    height: 90%;
+    width: 80%;
+    border: 1px solid #000;
+}
+#chat .left{
+    /* padding-left: 20px; */
+     width: 35%;
+     height: 100%;
+     /* background-color: red; */
+     border-right: 1px solid #000;
+}
+.ltop{
+     width: 100%;
+     height: 12%;
+     /* background-color: teal; */
+     
+}
+#chat .right{
+    width: 65%;
+    height: 100%;
+    /* background-color: royalblue; */
+}
+.list_card{
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: 10vh;
+    /* background-color: rebeccapurple; */
+}
+.list_card:hover{
+    background-color: #dadada;
+}
+.list_card .prphoto{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    overflow: hidden;
+}
+
+.list_card .prphoto img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ltop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #333;
+}
+.ltop h6{
+    font-family: gilroy;
+    text-transform: capitalize;
+    color: #000;
+}
